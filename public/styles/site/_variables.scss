@@ -1,0 +1,52 @@
+// Color variables
+$yellow: #ffc000;
+$warmblk: #1f1e1c;
+$magenta: #ff3366;
+$cyan: #66ccf9;
+$green: #99FFA2;
+
+// Override Bootstrap variables
+
+// Media queries breakpoints
+$screen-xs: 495px;
+$screen-sm: 660px;
+$screen-md: 990px;
+$screen-lg: 1320px;
+
+// Grid system
+$grid-columns: 6;
+$grid-gutter-width: 32px;
+
+// Container sizes
+$container-tablet: 660px;
+$container-desktop: 990px;
+$container-lg-desktop: 1320px;
+
+// Other Stuff
+$font-size-base: 21px;
+$headings-font-weight: 600;
+$text-color: #313030;
+$link-hover-color: $cyan;
+
+$border-radius-base: .5px;
+$border-radius-large: .75px;
+$border-radius-small: .25px;
+
+$nav-link-padding: 10px 15px 7.5px;
+$nav-link-hover-bg: $yellow;
+
+$btn-default-border: #272727;
+$btn-default-color: #272727;
+$btn-border-radius-large: 0;
+
+$list-group-active-bg: $cyan;
+$list-group-active-border: #111;
+$list-group-border: #111;
+$list-group-hover-bg: $cyan;
+$list-group-link-color: #111;
+
+$modal-backdrop-bg: $cyan;
+$modal-content-bg: $yellow;
+$modal-content-border-color: $magenta;
+$modal-md: 660px;
+$modal-backdrop-opacity: 1;

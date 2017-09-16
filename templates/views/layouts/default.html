@@ -1,0 +1,153 @@
+{% import "mixins/flash-messages.html" as FM %}
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>{{ title|default("ponpon bar") }}</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+		{# Customise the stylesheet for your site by editing /public/styles/site.sass #}
+		<link href="/styles/site.css" rel="stylesheet">
+
+		{# This file provides the default styling for the KeystoneJS Content Editor #}
+		{% if user and user.canAccessKeystone %}
+			<link href="/keystone/styles/content/editor.min.css" rel="stylesheet">
+		{% endif %}
+
+		{# Include template-specific stylesheets by extending the css block #}
+		{% block css %}{% endblock %}
+
+		{# Add any other template-specific HEAD tags by extending the head block #}
+		{% block head %}{% endblock %}
+	</head>
+	<body>
+
+		{# HEADER #}
+		<div id="header">
+
+			{# Customise your site"s navigation by changing the navLinks Array in ./routes/middleware.js
+			   ... or completely change this header to suit your design. #}
+			<div role="navigation" class="navbar container">
+				<!-- <div class="container"> -->
+				<a id="logo" href="/">
+					<img id="pplogo" class="col-md-2 col-sm-3 col-xs-6" src="/images/ponpon-logo.png" alt="Pon Pon bar">
+					<img id="ppguy" class="col-md-4 col-sm-3 col-xs-6" src="/images/pon-guy-lo.gif" alt="Pon Pon Bar illustration">
+				</a>
+				<!-- </div> -->
+				<div id="mainNav" class="col-md-2 col-xs-6">
+					<ul class="nav navbar-nav">
+						{% for link in navLinks %}
+							<li class="{{ 'active' if link.key == section else '' }}">
+								<a href="{{ link.href }}">{{ link.label }}</a>
+							</li>
+						{% endfor %}
+						<li class="{{ 'active' if link.key == section else '' }}">
+							<a href="#contact" data-toggle="modal" data-target=".contact-modal">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		{# BODY #}
+		<div id="body">
+			{# NOTE:
+			   There is no .container wrapping class around body blocks to allow more flexibility in design.
+			   Remember to include it in your templates when you override the intro and content blocks! #}
+
+			{# The Intro block appears above flash messages (used for temporary information display) #}
+			{% block intro %}{% endblock %}
+
+			{# Flash messages allow you to display once-off status messages to users, e.g. form validation errors, success messages, etc. #}
+			{{ FM.flashMessages(messages) }}
+
+			{# The content block should contain the body of your template"s content #}
+			{% block content %}{% endblock %}
+		</div>
+
+
+		{# FOOTER #}
+		<div id="footer" class="container">
+			<div class= "container">
+				<div class="row credits">
+					<p class="col-sm-2 col-xs-6">&copy; forever + 12 {{ title|default("Pon Pon Bar") }}</p>
+					<p class="col-sm-2 col-xs-6">Find us on <a href="https://duckduckgo.com/?q=%22yellp%22&norw=1&t=ffab&ia=web" target="_blank">Yellp</a></p>
+					<p class="design col-sm-2 col-xs-6">Design by <a href="https://www.instagram.com/realgooddesigner/" target="_blank" rel="nofollow">@realgooddesigner</a>.</p>
+				</div>
+				<div id="addy" class="vcard">
+					<div class="org marquee3k" data-speed="0.75" data-pausable="true">
+						<span class="ponpon">Pon Pon Bar&nbsp;</span>
+					</div>
+					<a class="email" href="mailto:ponponbarbar@gmail.com">ponponbarbar[at]gmail[dot]com</a>
+					<div class="adr marquee3k" data-speed="0.75" data-reverse="true" data-pausable="true">
+						<div class="street-address">2528 Walnut St.&nbsp;</div>
+						<span class="locality">Denver</span>
+						<span class="region">CO</span>
+						<span class="postal-code">80205</span>
+						<span class="country-name">USA</span>
+					</div>
+						<div id="hours" class="marquee3k" data-speed="0.75" data-pausable="true">
+							<span class="hrs">4PM to ???&nbsp;</span>
+						</div>
+				</div>
+				<div class="modal contact-modal" tabindex="-1" role="dialog">
+					  <div class="modal-dialog modal-md" role="document">
+					    <div class="modal-content">
+					    	<div class="modal-header">
+					    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					    	</div>
+					    	<div class="modal-body">
+		      					<p><s>ponbar@ponbar.com</s></p>
+		      					<p><s>paul@garçon.com</s></p>
+		      					<p><s>beef@chicken.com</s></p>
+		      					<p><s>super@ponponbar.com</s></p>
+								<p><s>ponpon@ponpon.com</s></p>
+								<p><s>barbar@ponpon.com</s></p>
+								<p><a id="modalEmail" href="">ponponbarbar|@|gmail[dot]com</a></p>
+					    	</div>
+					    </div>
+					  </div>
+				</div>
+				{% if user %}
+				<div class="container">
+					<ul class="nav navbar-nav col-xs-6">
+						{% if user.canAccessKeystone %}
+						<li class="btn btn-default btn-lg"><a href="/keystone">Open Keystone</a></li>
+						{% endif %}
+						<li class="btn btn-default btn-lg"><a href="/keystone/signout">Sign Out</a></li>
+					</ul>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+
+
+		{# JAVASCRIPT #}
+
+		<script src="/js/jquery/jquery-2.1.4.min.js"></script>
+
+		{# Customise which Bootstrap javascript files are served by including
+			them specifically here, instead of bootstrap-3.3.5.min.js #}
+		<script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script>
+
+		{# The KeystoneJS Content Editor provides support for ks-editable data attributes,
+			which generate links to edit content for users who can access Keystone #}
+		{% if user and user.canAccessKeystone %}
+			<script src="/keystone/js/content/editor.js"></script>
+		{% endif %}
+
+		{# Add scripts that are globally required by your site here. #}
+
+		{# Include template-specific javascript files by extending the js block #}
+		{% block js %}
+			<script src="/js/marquee/marquee3k.js"></script>
+			<script src="/js/canvas-to-blob/canvas-to-blob.min.js"></script>
+			<script src="/js/custom.js"></script>
+			<script>Marquee3k.init();</script>
+		{% endblock %}
+	</body>
+</html>

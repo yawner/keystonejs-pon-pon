@@ -1,0 +1,40 @@
+{% extends "layouts/default.html" %} 
+
+{% block content %}
+<div class="container canvas-wrapper">
+    <div class="canvas-header col-md-2 col-xs-6">
+        <h2>Yellp at Pon Pon!</h2>
+        <p>Draw me a review (minty fresh) in the box to the → and add it to the wall below.</p>
+    </div>
+    <div class="canvas-footer col-md-2 col-xs-6">
+        <button id="saveCanvas" class="btn btn-default btn-lg" type="button">Save</button>
+        <button id="clearCanvas" class="btn btn-default btn-lg" type="button">Clear</button>
+    </div>
+    <div id="canvasDiv"></div>
+    <div id="yellps">
+        {% if not index %}
+          <h2 class="text-center">No one Yellped at us!</h2>
+        {% else %}
+          <div class="spacer col-md-2 col-xs-6">
+          </div>
+          <div class="latest-yellps col-md-2 col-xs-6">
+            <h2>Latest Yellps</h2>
+          </div>
+        {% set length = index.length %}
+        {% for i in range((length - 5), length) %}
+          <div class="spacer col-md-2 col-xs-6">
+          </div>
+          <div class="yellp-img col-md-2 col-xs-6">
+            <img src="/uploads/images/{{index[i].image.filename}}" />
+          </div>
+        {% endfor %}
+        {% endif %}
+        <div class="spacer col-md-2 col-xs-6">
+        </div>
+        <div class="more-yellps col-md-2 col-xs-6">
+          <h2>More Yellps</h2>
+          <a href="/archive" target="_blank">All the yellps &rarr;</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

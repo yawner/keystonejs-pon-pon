@@ -1,0 +1,39 @@
+{% extends "layouts/default.html" %} 
+
+{% block content %}
+    <div id="menu" class="container">
+    	<div class="menu-head-1 spacer col-sm-2"></div>
+		<h1 class="page-title col-sm-2">Cocktails</h1>
+		<div class="menu-head-2 spacer col-md-2 col-sm-6"></div>
+        {% if not menu %}
+        <h2>We ran out…</h2> 
+        {% else %}
+        <dl class="cocktails">
+            {% for menu in menu %}
+            {% if menu %}
+            <div class="spacer col-md-2 col-sm-6">
+	        </div>
+            <div class="cocktail col-md-2 col-sm-6">
+                <div class="cocktail-header">
+                    <dt class="cocktail-title">
+                        {{ menu.title }}
+                    </dt>
+                    <dd class="cocktail-price">${{ menu.price }}</dd>
+                </div>
+                <dd class="cocktail-desc">
+                    {{ menu.cocktail.ingredients | striptags(true) | safe }}
+                </dd>
+                <dd class="cocktail-quote">
+                    &ldquo;{{ menu.cocktail.quote | striptags(true) | safe }}&rdquo;
+                </dd>
+            </div>
+            <div class="spacer col-md-2 col-sm-6">
+	        </div>
+	        <div class="row-spacer col-sm-6">
+	        </div>
+            {% endif %}
+            {% endfor %}
+        </dl>
+        {% endif %}
+    </div>
+{% endblock %}

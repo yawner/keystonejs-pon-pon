@@ -1,0 +1,32 @@
+// screen-md and larger
+@media screen and (min-width: 990px) {
+	#mainNav {
+		position: fixed;
+		right: 0;
+		top: 0;
+	}
+	.navbar-nav > li > a {
+		padding-top: 42.5px;
+	}
+	#header {
+		max-height: 330px;
+	}
+	#ppguy {
+		min-height: 330px;
+	}
+	#addy {
+		position: fixed;
+		right: 0;
+		top: 330px;
+		.org, .adr, .hrs {
+			max-width: 330px;
+		}
+	}
+}
+
+//screen-sm
+@media screen and (min-width: 660px) and (max-width: 989px) {
+	#ppguy {
+		max-height: 162px;
+	}
+}

@@ -1,0 +1,113 @@
+{% extends "layouts/default.html" %}
+
+{% block intro %}
+<header id="eventsHeader">
+	<div class="post-head-1 spacer col-md-2 col-xs-6"></div>
+	{% set title = ( data.category.name if data.category else "Events" ) %}
+	<h1 class="page-title col-xs-6 col-md-2">{{ title }}</h1>
+	<div class="post-head-2 spacer col-md-2 col-xs-6"></div>
+</header>
+{% endblock %}
+
+{% macro blogPost(post) %}
+<div class="post" data-ks-editable="editable(user, { list: " Post ", id: post.id })">
+	<h2>
+		<a href="/events/post/{{ post.slug }}">{{ post.title }}</a>
+	</h2>
+	<p class="lead">
+		{% if post.categories and post.categories.length %}
+			{% for cat in post.categories %}<a href="/events/{{ cat.key }}">{{ cat.name }}</a>{% if loop.index < post.categories.length %}, {% endif %}:{% endfor %}
+		{% endif %}
+		{% if post.publishedDate %}
+			<time>{{ post._.publishedDate.format("MMMM Do, YYYY") }}</time>
+		{% endif %}
+		{% if post.author %}
+			&nbsp; by {{ post.author.name.first }}
+		{% endif %}
+	</p>
+	{% if post.image.exists %}
+		<img src="{{ post._.image.fit(300,300) }}" class="img-responsive">
+	{% endif %}
+	<p>{{ post.content.brief|safe }}</p>
+	{% if post.content.extended %}
+		<p class="read-more">
+			<a href="/events/post/{{ post.slug }}">Read more…</a>
+		</p>
+	{% endif %}
+</div>
+{% endmacro %}
+
+{% block content %}
+<div id="events" class="container">
+	<div class="spacer col-md-2 col-xs-6"></div>
+	<div class="events-body col-xs-6 col-md-2">
+		{% if filters.category and not data.category %}
+			<h3 class="text-muted">No events like that :(</h3>
+		{% else %}
+			{% if data.posts.results.length %}
+				<div class="event">
+					{% for post in data.posts.results %} 
+						{{ blogPost(post) }} 
+					{% endfor %}
+				</div>
+				{% if data.posts.totalPages > 1 %}
+					<ul class="pagination">
+						
+						{% if data.posts.previous %}
+							<li>
+								<a href="?page={{ data.posts.previous }}">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>
+						{% else %}
+							<li class="disabled">
+								<a href="?page=1">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>
+						{% endif %}
+
+						{% for p in data.posts.pages %} {% set class = ( "active" if data.posts.currentPage == p else "" ) %}
+							<li class="{{ class }}">
+								{% set page = ( (data.posts.totalPages if i else 1) if p == "..." else p ) %}
+								<a href="?page={{ page }}">{{ p }}</a>
+							</li>
+						{% endfor %}
+
+						{% if data.posts.next %}
+							<li>
+								<a href="?page={{ data.posts.next }}">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+						{% else %}
+							<li class="disabled">
+								<a href="?page={{ data.posts.totalPages }}">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+						{% endif %}
+
+					</ul>
+				{% endif %}
+			{% else %}
+				{% if data.category %}
+					<h3>There are no {{ data.category.name }} events :&nbsp;(</h3>
+				{% else %}
+					<h3>No events :&nbsp;(</h3>
+				{% endif %}
+			{% endif %}
+		{% endif %}
+		{% if data.categories.length %}
+		<h3>More events:</h3>
+		<div class="list-group">
+			{% set class = ( "active" if not data.category else "" ) %}
+			<a href="/events" class="{{ class }} list-group-item">all events</a>
+			{% for cat in data.categories %} {% set class = ( "active" if data.category and data.category.id == cat.id else "" ) %}
+				<a href="/events/{{ cat.key }}" class="{{ class }} list-group-item">{{ cat.name }}</a>
+			{% endfor %}
+		</div>
+	{% endif %}
+	</div>
+</div>
+{% endblock %}

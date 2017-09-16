@@ -1,0 +1,24 @@
+{% extends "layouts/default.html" %} 
+
+{% block content %}
+<div class="container canvas-wrapper">
+    <div id="yellps" class="archive">
+        <div class="yellps-archive col-md-2 col-sm-6">
+          <h2>All the Yellps:</h2>
+        </div>
+        <div class="spacer col-md-2 col-sm-6">
+        </div>
+        {% if not archive %}
+          <h2 class="text-center">No one Yellped at us!</h2>
+        {% else %}
+        {% for images in archive %}
+          <div class="yellp-img col-md-2 col-sm-6">
+            <img src="/uploads/images/{{images.image.filename}}" />
+          </div>
+          <div class="spacer col-md-2 col-sm-6">
+          </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

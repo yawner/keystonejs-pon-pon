@@ -1,0 +1,31 @@
+@mixin border($width, $color1, $color2) {
+	border-top: $width solid $color1;
+	border-bottom: $width solid $color1;
+	border-left: $width solid $color2;
+	border-right: $width solid $color2;
+}
+
+@mixin triangle-up ($width, $half-width, $color) {
+	width: 0;
+	height: 0;
+	border-left: $half-width solid transparent;
+	border-right: $half-width solid transparent;
+	border-bottom: $width solid $color;
+}
+
+@mixin triangle-right ($width, $half-width, $color) {
+	width: 0;
+	height: 0;
+	border-top: $half-width solid transparent;
+	border-bottom: $half-width solid transparent;
+	border-left: $width solid $color;
+}
+
+@mixin egg ($width, $height, $color) {
+	 display:block; 
+	 width: $width; 
+	 height: $height; 
+	 background-color: $color; 
+	 //-webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px; 
+	 border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}

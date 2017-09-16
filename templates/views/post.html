@@ -1,0 +1,43 @@
+{% extends "layouts/default.html" %}
+
+{% block content %}
+
+<article id="singlePost" class="container">
+	{% if not data.post %}
+		<h2>No event :(</h2>
+	{% else %}
+		<header>
+			<div class="post-head-1 spacer col-md-2 col-sm-6"></div>
+			<h1 class="page-title col-md-2 col-sm-6">{{ data.post.title }}</h1>
+			<div class="post-head-2 spacer col-md-2 col-sm-6"></div>
+			<div class="spacer col-md-2 col-sm-6"></div>
+		</header>
+		<div class="post col-md-2 col-sm-6">
+			<h2>A(n) 
+			{% if data.post.categories and data.post.categories.length %}
+				{% for cat in data.post.categories %}
+				<a href="/events/{{ cat.key }}">{{ cat.name }}</a>{% if loop.index < data.post.categories.length %} &amp; {% endif %}
+				{% endfor %}			
+			{% endif %}
+			event on:
+			</h2>
+			{% if data.post.publishedDate %}
+				<p class="lead"><time>{{ data.post._.publishedDate.format("MMMM Do, YYYY") }}</time></p>
+			{% endif %}
+			{% if data.post.author %}
+				by {{ data.post.author.name.first }}
+			{% endif %}
+			{% if data.post.image.exists %}
+				<div class="image-wrap">
+					<img src="{{ data.post._.image.fit(330,330) }}" class="img-responsive">
+				</div>
+			{% endif %}
+			{{ data.post.content.full|safe }}
+			<p>
+				<a href="/events">&larr; all events</a>
+			</p>
+		</div>
+	{% endif %}
+</article>
+
+{% endblock %}
