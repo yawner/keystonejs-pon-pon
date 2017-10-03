@@ -43,6 +43,8 @@ keystone.set('locals', {
 // Load your project's Routes
 keystone.set('routes', require('./routes'));
 
+// Setup Cloudinary
+keystone.set('cloudinary config', 'cloudinary://648773565683493:zl2i23byROvY3ZHS_WpH87So7PU@dbcm2logu' );
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
