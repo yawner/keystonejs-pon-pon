@@ -22,8 +22,6 @@ keystone.init({
 	'auto update': true,
 	'mongo': 'mongodb://localhost/ponpon-bar',
 
-	'cloudinary secure': true,
-
 	'session': true,
 	'auth': true,
 	'user model': 'User',
