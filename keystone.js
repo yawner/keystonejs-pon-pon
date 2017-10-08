@@ -22,6 +22,7 @@ keystone.init({
 	'auto update': true,
 	'mongo': process.env.MONGO_URI || 'mongodb://localhost/admin',
 	'cloudinary config': 'cloudinary://648773565683493:zl2i23byROvY3ZHS_WpH87So7PU@dbcm2logu',
+	'cookie secret': process.env.COOKIE_SECRET || 'demo',
 
 	'session': true,
 	'auth': true,
