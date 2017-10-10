@@ -64,7 +64,7 @@ make_logo();
 function make_logo()
 {
   logo_image = new Image();
-  logo_image.src = 'http://localhost:3000/images/yellp/yellp-template.png';
+  logo_image.src = '/images/yellp/yellp-template.png';
   logo_image.onload = function(){
     context.drawImage(logo_image, 0, 0, 306, 306); //leave room for canvas border
   };
