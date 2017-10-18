@@ -15,30 +15,52 @@ $('.cocktail:nth-of-type(3n+1)').css('background-color', '#66ccf9');
 
 /* Size Main Nav & Marquees to correct window size */
 $(document).on('ready', function() {
-    marqueeSize();
+    responsiveLayout();
+    Marquee3k.refreshAll();
 });
 
 $(window).on('resize', function() {
-    marqueeSize();
+    responsiveLayout();
+    Marquee3k.refreshAll();
 });
 
-function marqueeSize() {
+function responsiveLayout() {
     var w = $(document).width();
     var gridW = 330;
    
-   // screen-md or larger get remaining screen width above 990 and size marquees/nav to it
-    if ( w >= 990 && w < 1320 ) {
-      $('#mainNav').css('max-width', ( (w/330 - 3) * 330 ) );
-      $('#addy').css('max-width', ( (w/330 - 3) * 330 ) );
-      $('#hours').css('max-width', ( (w/330 - 3) * 330 ) );
-      Marquee3k.refreshAll();
+    // screen-md or larger get remaining screen width above 990 and size marquees/nav to it
+    if ( w >= 1160 && w < 1320 ) {
+      $('#addy').css('max-width', ((w/330 - 3) * 330) );
+      $('#hours').css('max-width', ((w/330 - 3) * 330) );
+      $('#testimonials').css('max-width', ((w/330 - 3) * 330) );
+      $('#testimonials figure').css('max-width', ((w/330 - 3) * 330) );
+
+      $('#yellps .spacer').filter(':even').show();
+      $('#yellps .yellp-img').filter(':even').css('margin-left', '');
+
+      $('.yellp-arrow').text(' to the →');
     }
-    // screen-sm or smaller
-    if ( w <= 989 ) {
+    // screen-sm or smaller get remaining screen width above 660 and size marquees/nav to it
+    if ( w >= 787 && w <= 1159 ) {
+      $('#addy').css('max-width', ((w/330 - 2) * 330) );
+      $('#hours').css('max-width', ((w/330 - 2) * 330) );
+      $('#testimonials').css('max-width', ((w/330 - 2) * 330) );
+      $('#testimonials figure').css('max-width', ((w/330 - 2) * 330) );
+
+      $('.yellp-arrow').text(' below ↓');
+
+      $('#yellps .spacer').filter(':even').hide();
+      $('#yellps .yellp-img').filter(':even').css('margin-left', '330px');
+    }
+    // screen-xs
+    if ( w <= 786 ) {
       $('#mainNav').css('max-width', '100%');
       $('#addy').css('max-width', '100%');
       $('#hours').css('max-width', '100%');
-      Marquee3k.refreshAll();
+      $('#testimonials').css('max-width', '100%');
+      $('#testimonials figure').css('max-width', '100%');
+
+      $('.yellp-arrow').text(' below ↓');
     }
 }
 
@@ -58,8 +80,17 @@ if (typeof G_vmlCanvasManager != 'undefined') {
 }
 context = canvas.getContext("2d");
 
-// Add Yellp logo to canvas.
-make_logo();
+// Add Yellp starter template to canvas.
+make_starter();
+
+function make_starter()
+{
+  logo_image = new Image();
+  logo_image.src = '/images/yellp/yellp-starter.png';
+  logo_image.onload = function(){
+    context.drawImage(logo_image, 0, 0, 306, 306); //leave room for canvas border
+  };
+}
 
 function make_logo()
 {
@@ -81,6 +112,9 @@ $('#canvas').mousedown(function(e) {
     var mouseX = e.pageX - this.offsetLeft;
     var mouseY = e.pageY - this.offsetTop;
 
+    // Clear starter template and add Yellp logo to canvas.
+    make_logo();
+
     paint = true;
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
     redraw();
@@ -88,6 +122,7 @@ $('#canvas').mousedown(function(e) {
 
 // get position while dragging
 $('#canvas').mousemove(function(e) {
+
     if (paint) {
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
         redraw();
@@ -210,85 +245,4 @@ $('#saveCanvas').on('click', function() {
         $.ajax(opts);
     }
 
-});
-
-/*function uploadImage() {
-
-  var selectedImage = $('#image_upload').get(0).files[0];
-
-  //Error handling
-  if(selectedImage === undefined)
-    alert('You did not select an image!');
-    
-  //Create the FormData data object and append the image to it.
-  var newImage = new FormData();
-  newImage.append('image_upload', selectedImage); //This is the raw image that was selected
-
-  //Set the form options.
-  var opts = {
-    url: '/api/imageupload/create',
-    data: newImage,
-    cache: false,
-    contentType: false,
-    processData: false,
-    type: 'POST',
-    
-    //This function is executed when the image uploads successfully.
-    success: function(data){
-      //Dev Note: KeystoneAPI only allows image and image uploads with the image itself. Any extra metadata will have to
-      //be uploaded/updated with a second call.
-      
-      //console.log('Image upload succeeded! ID: ' + data.image_upload._id);
-
-      //Fill out the image metadata information
-      data.image_upload.name = $('#image_name').val();
-      data.image_upload.url = '/uploads/images/'+data.image_upload.image.imagename;
-      data.image_upload.imageType = data.image_upload.image.mimetype;
-      data.image_upload.createdTimeStamp = new Date();
-      
-      //Update the image with the information above.
-      $.get('/api/imageupload/'+data.image_upload._id+'/update', data.image_upload, function(data) {
-        
-        //console.log('Image information updated.');
-        
-        //Add the uploaded image to the uploaded image list.
-        $('#image_list').append('<li><a href="'+data.collection.url+'" download>'+data.collection.name+'</a></li>');
-        
-      })
-      
-      //If the metadata update fails:
-      .fail(function(data) {
-        
-        console.error('The image metadata was not updated. Here is the error message from the server:');
-        console.error('Server status: '+err.status);
-        console.error('Server message: '+err.statusText);
-
-        alert('Failed to connect to the server while trying to update image metadata!');
-      });
-    },
-    
-    //This error function is called if the POST fails for submitting the image itself.
-    error: function(err) {
-      
-      console.error('The image was not uploaded to the server. Here is the error message from the server:');
-      console.error('Server status: '+err.status);
-      console.error('Server message: '+err.statusText);
-
-      alert('Failed to connect to the server!');
-    }
-  };
-
-  //Execute the AJAX call.
-  jQuery.ajax(opts);
-      
-}*/
-
-/* Animate.css callback to remove classes by js after anim ends */
-$.fn.extend({
-    animateCss: function(animName) {
-        var animEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        this.addClass('animated ' + animName).one(animEnd, function() {
-            $(this).removeClass('animated ' + animName);
-        });
-    }
 });

@@ -1,7 +1,7 @@
 {% extends "layouts/default.html" %}
 
 {% block intro %}
-<header id="eventsHeader">
+<header id="eventsHeader" class="col-xs-6">
 	<div class="post-head-1 spacer col-md-2 col-xs-6"></div>
 	{% set title = ( data.category.name if data.category else "Events" ) %}
 	<h1 class="page-title col-xs-6 col-md-2">{{ title }}</h1>

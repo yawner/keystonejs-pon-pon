@@ -9,8 +9,8 @@ $green: #99FFA2;
 
 // Media queries breakpoints
 $screen-xs: 495px;
-$screen-sm: 660px;
-$screen-md: 990px;
+$screen-sm: 786px;
+$screen-md: 1160px;
 $screen-lg: 1320px;
 
 // Grid system
@@ -18,9 +18,10 @@ $grid-columns: 6;
 $grid-gutter-width: 32px;
 
 // Container sizes
-$container-tablet: 660px;
-$container-desktop: 990px;
-$container-lg-desktop: 1320px;
+$container-xs: 330px;
+$container-sm: 660px;
+$container-md: 990px;
+$container-lg: 990px;
 
 // Other Stuff
 $font-size-base: 21px;
