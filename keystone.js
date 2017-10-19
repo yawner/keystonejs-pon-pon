@@ -20,7 +20,7 @@ keystone.init({
 	'custom engine': cons.nunjucks,
 
 	'auto update': true,
-	'mongo': process.env.MONGO_URL || 'mongodb://138.68.9.215/pon_pon_production',
+	'mongo': process.env.MONGO_URL || 'mongodb://localhost/pon_pon_production',
 	'cloudinary config': 'cloudinary://648773565683493:zl2i23byROvY3ZHS_WpH87So7PU@dbcm2logu',
 	'cookie secret': process.env.COOKIE_SECRET || 'demo',
 
