@@ -1,5 +1,7 @@
-/* Contact email stuff */
+/* General site stuff */
 $(document).on('ready', function() {
+
+    // Contact email stuff
     $('.email').hide();
     $('.contact-modal').on('show.bs.modal', function (event) {
 
@@ -7,13 +9,35 @@ $(document).on('ready', function() {
       var gg = 'gmail.com';
       $(this).find('#modalEmail').attr('href', 'mailto:' + ee + '@' + gg );
     });
+
+     // Background colors of cocktail menu 
+    $('.cocktail:nth-child(3n)').css('background-color', '#ffc000');
+    $('.cocktail:nth-of-type(3n+1)').css('background-color', '#66ccf9');
+
+     // Admin delete images on archive page 
+    $('.yellp-delete').on('click', function(e) {
+        e.preventDefault();
+
+        var imgUrl = $(this).attr('href');
+        var fileName = $(this).attr('data-file');
+
+        // make ajax post
+        var delOpts = {
+            type: "POST",
+            url: imgUrl,
+            data: { 'filename' : fileName },
+            success: function() {
+              setTimeout(function() {
+                window.location.reload();
+              }, 100);
+            }
+        };
+
+        $.ajax(delOpts);
+    });
 });
 
-/* Background colors of cocktail menu */
-$('.cocktail:nth-child(3n)').css('background-color', '#ffc000');
-$('.cocktail:nth-of-type(3n+1)').css('background-color', '#66ccf9');
-
-/* Size Main Nav & Marquees to correct window size */
+/* Size Main Nav, Marquees and grids to correct window size */
 $(document).on('ready', function() {
     responsiveLayout();
     Marquee3k.refreshAll();
