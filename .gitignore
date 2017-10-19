@@ -27,5 +27,8 @@ node_modules
 # Ignore .env configuration files
 .env
 
+# Ignore Keystonejs configuration files (different in local/dev and production)
+keystone.js
+
 # Ignore .DS_Store files on OS X
 .DS_Store
