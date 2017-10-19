@@ -97,8 +97,10 @@ a {
 	border: none;
 	.close {
 		color: $magenta;
+		height: 32px;
 		opacity: 1;
 		text-shadow: none;
+		width: 32px;
 	}
 }
 
@@ -174,6 +176,8 @@ a {
 // Body
 #body .container {
 	margin: 0;
+	padding-left: 0;
+	padding-right: 0;
 }
 .page-title {
 	color: #111;
@@ -189,85 +193,16 @@ a {
 	margin-top: -1px;
 }
 
-// Footer
-#footer {
-	background-color: #fff;
-	color: #111;
-	font-weight: bold;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	.credits {
-		p {
-			margin: 0;
-			min-height: 110px;
-			padding-top: 32px;
-		} & :nth-child(odd):not(a) {
-			background-color: #111;
-			color: #fff;
-			font-weight: normal;
-		}
-	}
-	#addy {
-		color: #fff;
-		overflow: hidden;
-		.org {
-			background-color: #111;
-			min-height: 110px;
-			padding-top: 42.5px;
-		} .adr {
-			background-color: #fff;
-			color: #111;
-			font-weight: bold;
-			min-height: 110px;
-			padding-top: 42.5px;
-		} .hrs {
-			background-color: #111;
-			font-weight: bold;
-			min-height: 110px;
-			padding-top: 42.5px;
-		} .locality, .region, .postal-code, .country-name {
-			// Hide these but leave visible for bots & screen readers
-			clip: rect(0, 0, 0, 0);
-			height: 0;
-			overflow: hidden;
-			position: absolute;
-			width: 0;
-			word-wrap: normal;
-		}
-	}
-	#testimonials {
-		background-color: #fff;
-		color: #111;
-		blockquote {
-			border: none;
-			font-size: inherit;
-			font-weight: bold;
-			margin-bottom: 0;
-			min-height: 110px;
-			padding-top: 42.5px;
-			padding-right: 125px;
-		}
-		& :nth-child(even) {
-			background-color: #111;
-			color: #fff;
-			font-weight: normal;
-		}
-	}
+.canvas-header h2 {
+	margin-bottom: 0;
 }
-
-// Yellp Styles
-.canvas-wrapper {
-	padding-left: 0;
-	padding-right: 0;
-}
-
 #canvasDiv {
 	canvas {
 		@include border(12px, $cyan, $yellow);
 	}
 }
 
+// Yellp Styles
 #yellps {
 	.latest-yellps {
 		background-color: #111;
@@ -300,7 +235,7 @@ a {
 		@include border(12px, $cyan, $magenta);
 	}
 	.more-yellps {
-		@include egg(328px, 300px, #111);
+		@include egg(330px, 330px, #111);
 		color: #fff;
 		text-align: center;
 		h2 { margin-top: 2em; }
@@ -457,4 +392,71 @@ a {
 	line-height: 1.2857;
 	margin-bottom: 18px;
 	padding: 17.5px 16.75px 18.75px;
+}
+
+// Footer
+#footer {
+	background-color: #fff;
+	color: #111;
+	font-weight: bold;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	.credits {
+		p {
+			margin: 0;
+			min-height: 110px;
+			padding-top: 32px;
+		} & :nth-child(odd):not(a) {
+			background-color: #111;
+			color: #fff;
+			font-weight: normal;
+		}
+	}
+	#addy {
+		color: #fff;
+		overflow: hidden;
+		.org {
+			background-color: #111;
+			min-height: 110px;
+			padding-top: 42.5px;
+		} .adr {
+			background-color: #fff;
+			color: #111;
+			font-weight: bold;
+			min-height: 110px;
+			padding-top: 42.5px;
+		} .hrs {
+			background-color: #111;
+			font-weight: bold;
+			min-height: 110px;
+			padding-top: 42.5px;
+		} .locality, .region, .postal-code, .country-name {
+			// Hide these but leave visible for bots & screen readers
+			clip: rect(0, 0, 0, 0);
+			height: 0;
+			overflow: hidden;
+			position: absolute;
+			width: 0;
+			word-wrap: normal;
+		}
+	}
+	#testimonials {
+		background-color: #fff;
+		color: #111;
+		blockquote {
+			border: none;
+			font-size: inherit;
+			font-weight: bold;
+			margin-bottom: 0;
+			min-height: 110px;
+			padding-top: 42.5px;
+			padding-right: 125px;
+		}
+		& :nth-child(even) {
+			background-color: #111;
+			color: #fff;
+			font-weight: normal;
+		}
+	}
 }
