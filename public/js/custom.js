@@ -28,31 +28,32 @@ function responsiveLayout() {
     var w = $(document).width();
     var gridW = 330;
    
-    // screen-md or larger get remaining screen width above 990 and size marquees/nav to it
+    // screen-lg get remaining screen width above 990 and size marquees/nav to it
     if ( w >= 1160 && w < 1320 ) {
       $('#addy').css('max-width', ((w/330 - 3) * 330) );
       $('#hours').css('max-width', ((w/330 - 3) * 330) );
       $('#testimonials').css('max-width', ((w/330 - 3) * 330) );
       $('#testimonials figure').css('max-width', ((w/330 - 3) * 330) );
 
-      $('#yellps .spacer').filter(':even').show();
-      $('#yellps .yellp-img').filter(':even').css('margin-left', '');
+      $('#yellps .spacer').show();
+      $('#yellps .yellp-img').css('margin-left', '0');
 
       $('.yellp-arrow').text(' to the →');
     }
-    // screen-sm or smaller get remaining screen width above 660 and size marquees/nav to it
+    // screen-md get remaining screen width above 660 and size marquees/nav to it
     if ( w >= 787 && w <= 1159 ) {
       $('#addy').css('max-width', ((w/330 - 2) * 330) );
       $('#hours').css('max-width', ((w/330 - 2) * 330) );
       $('#testimonials').css('max-width', ((w/330 - 2) * 330) );
       $('#testimonials figure').css('max-width', ((w/330 - 2) * 330) );
 
-      $('.yellp-arrow').text(' below ↓');
+      $('.yellp-arrow').text(' to the →');
 
-      $('#yellps .spacer').filter(':even').hide();
-      $('#yellps .yellp-img').filter(':even').css('margin-left', '330px');
+      $('#yellps .spacer').filter(':odd').hide();
+      $('#yellps .yellp-img').filter(':even').css('margin-left', '0');
+      $('#yellps .yellp-img').filter(':odd').css('margin-left', '330px');
     }
-    // screen-xs
+    // screen-sm
     if ( w <= 786 ) {
       $('#mainNav').css('max-width', '100%');
       $('#addy').css('max-width', '100%');
@@ -60,7 +61,21 @@ function responsiveLayout() {
       $('#testimonials').css('max-width', '100%');
       $('#testimonials figure').css('max-width', '100%');
 
+      $('#yellps .yellp-img').filter(':even').css('margin-left', '0');
       $('.yellp-arrow').text(' below ↓');
+    }
+    if ( w >= 660 && w <= 785 ) {
+      $('#yellps .yellp-img').filter(':odd').css('margin-left', '0');
+      $('#yellps .yellp-img').filter(':even').css('margin-left', '330px');
+    }
+    if ( w <= 660 ) {
+      $('#yellps .yellp-img').filter(':even').css('margin-left', '0');
+    }
+    // screen-xs
+    if ( w <= 495 ) {
+      // reset display styles so css can work
+      $('#yellps .yellp-img').filter(':even').css('margin-left', '0');
+      $('#yellps .spacer').css('display', '');
     }
 }
 
