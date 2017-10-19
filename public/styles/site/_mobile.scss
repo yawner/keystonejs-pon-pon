@@ -26,9 +26,6 @@
 		max-height: 220px;
 		max-width: 449.3px;
 	}
-	.canvas-header h2 {
-		margin-bottom: 0;
-	}
 	#canvasDiv {
 		margin-left: 660px;
 		height: 330px;
@@ -63,6 +60,11 @@
 //screen-md
 @media screen and (min-width: 787px) and (max-width: 1159px) {
 	// Header
+	#header {
+		margin-top: -1px; // weird layout fix?
+		max-height: 330px;
+		overflow: hidden;
+	}
 	#mainNav {
 		width: 100%;
 		.navbar-nav {
@@ -81,11 +83,6 @@
 			max-width: 220px;
 		}
 	}
-	#header {
-		margin-top: -1px; // weird layout fix?
-		max-height: 330px;
-		overflow: hidden;
-	}
 	#pplogo {
 		max-height: 220px;
 		padding: 7.5px;
@@ -97,20 +94,10 @@
 	// Body
 	#canvasDiv {
 		max-width: 660px;
-		max-height: 660px;
+		max-height: 330px;
 	}
 	.canvas-header {
 		max-width: 330px;
-		h2 { margin-bottom: 0; }
-	}
-	.canvas-footer {
-	}
-	#yellps {
-		// hide first spacer for layout
-		div:first-of-type { 
-			display: none;
-			visibility: hidden;
-		}
 	}
 	#menu, #eventsHeader, #events {
 		.page-title {
@@ -150,6 +137,10 @@
 // screen-sm
 @media screen and (max-width: 786px) {
 	// Header
+	#header {
+		max-height: 330px;
+		overflow: hidden;
+	}
 	#mainNav .nav {
 		margin: 0;
 		width: 100%;
@@ -172,11 +163,13 @@
 		}
 	}
 	// Body
-	.canvas-header h2 {
-		margin-bottom: 0;
+	.canvas-wrapper {
+		padding-left: 0;
+		padding-right: 0;
 	}
-	.canvas-footer {
-		padding-bottom: 12px;
+	.canvas-header {
+		height: 330px;
+		max-width: 330px;
 	}
 	#canvasDiv {
 		height: 660px;
@@ -234,5 +227,3 @@
 		}
 	}
 }
-
-
