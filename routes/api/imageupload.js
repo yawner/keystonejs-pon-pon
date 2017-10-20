@@ -8,6 +8,7 @@ var ImgData = keystone.list('ImageUpload');
  * List Files
  */
 exports.list = function(req, res) {
+  
   ImgData.model.find(function(err, items) {
 
     if (err) return res.apiError('database error', err);
@@ -23,7 +24,7 @@ exports.list = function(req, res) {
  * Get File by ID
  */
 exports.get = function(req, res) {
-
+  
   ImgData.model.findById(req.params.id).exec(function(err, item) {
 
     if (err) return res.apiError('database error', err);
@@ -41,6 +42,7 @@ exports.get = function(req, res) {
  * Update File by ID
  */
 exports.update = function(req, res) {
+  
   ImgData.model.findById(req.params.id).exec(function(err, item) {
     if (err) return res.apiError('database error', err);
     if (!item) return res.apiError('not found');
@@ -63,7 +65,7 @@ exports.update = function(req, res) {
  * Upload a New File
  */
 exports.create = function(req, res) {
-
+  
   var item = new ImgData.model(),
   data = (req.method == 'POST') ? req.body : req.query;
 
@@ -85,8 +87,6 @@ exports.remove = function(req, res) {
 
   var imgId = req.params.id;
   ImgData.model.findById(req.params.id).exec(function (err, item) {
-    debugger;
-    var img = ImgData.model.findById(req.params.id);
     
     if (err) return res.apiError('database error', err);
     
@@ -94,10 +94,12 @@ exports.remove = function(req, res) {
 
       item.remove(function (err) {
 
+        var img = item._doc.image.filename;
+
         if (err) return res.apiError('database error', err);
-        
+
         //Delete the file
-        exec('rm public/uploads/images/' + img + '.png', function(err, stdout, stderr) {
+        exec('rm public/uploads/images/' + img , function(err, stdout, stderr) {
           if (err) {
               console.log('child process exited with error code ' + err.code);
               return;
