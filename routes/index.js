@@ -26,6 +26,6 @@ exports = module.exports = function(app) {
     app.get('/api/imageupload/:id', keystone.middleware.api, routes.api.imageupload.get);
     app.all('/api/imageupload/:id/update', keystone.middleware.api, routes.api.imageupload.update);
     app.all('/api/imageupload/create', keystone.middleware.api, routes.api.imageupload.create);
-    app.get('/api/imageupload/:id/remove', keystone.middleware.api, routes.api.imageupload.remove);
+    app.all('/api/imageupload/:id/remove', keystone.middleware.api, routes.api.imageupload.remove);
 
 };
