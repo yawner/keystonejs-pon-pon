@@ -250,16 +250,16 @@ $('#saveCanvas').on('click', function() {
             processData: false,
             contentType: false,
             success: function(data) {
-
+              
               data.image_upload.name = 'yellp_' + data.image_upload._id;
               data.image_upload.filename = 'yellp_' + data.image_upload._id;
-              data.image_upload.url = '/uploads/images/yellp_' + data.image_upload.image.filename;
+              data.image_upload.url = '/uploads/images/' + data.image_upload.image.filename;
               data.image_upload.imageType = 'image/png';
               data.image_upload.createdTimeStamp = new Date();
               
               //Update the image with the information above.
               $.get('/api/imageupload/'+data.image_upload._id+'/update', data.image_upload, function(data) {
-
+                
                 console.log('Image information updated.');
                 
               })
