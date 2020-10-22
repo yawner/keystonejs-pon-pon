@@ -1,24 +1,29 @@
 {
   "name": "ponpon-bar",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "async": "^2.1.4",
-    "consolidate": "^0.14.5",
-    "dotenv": "^4.0.0",
-    "keystone": "4.2.1",
+    "async": "2.1.4",
+    "consolidate": "0.14.5",
+    "dotenv": "4.0.0",
+    "keystone": "4.0.0-beta.5",
     "lodash": "^4.13.1",
-    "node-sass": "4.14.1",
+    "node-sass": "4.5.0",
     "node-sass-middleware": "0.11.0",
-    "nunjucks": "3.2.2"
+    "nunjucks": "3.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "3.15.0",
     "eslint-config-keystone": "3.0.0",
     "eslint-plugin-react": "^5.1.1"
   },
   "scripts": {
     "lint": "eslint .",
     "start": "node keystone.js"
-  }
+  },
+  "description": "Keystonejs app with file upload API and HTML5 Canvas upload features ",
+  "main": "index.js",
+  "repository": "https://yawner@github.com/yawner/keystonejs-pon-pon.git",
+  "author": "yawner <yawner@tutanota.com>",
+  "license": "MIT"
 }
