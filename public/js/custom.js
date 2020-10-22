@@ -1,6 +1,10 @@
 /* General site stuff */
 $(document).on('ready', function() {
 
+    // set date in footer
+    year =  new Date().getFullYear();
+    document.getElementById("year").innerHTML = year;
+
     // Contact email stuff
     $('.email').hide();
     $('.contact-modal').on('show.bs.modal', function (event) {
@@ -10,12 +14,8 @@ $(document).on('ready', function() {
       $(this).find('#modalEmail').attr('href', 'mailto:' + ee + '@' + gg );
     });
 
-     // Background colors of cocktail menu 
-    $('.cocktail:nth-child(3n)').css('background-color', '#ffc000');
-    $('.cocktail:nth-of-type(3n+1)').css('background-color', '#66ccf9');
-
-     // Admin delete images on archive page 
-    $('.yellp-delete').on('click', function(e) {
+    // Admin delete images on archive page 
+    $('.yellp-delete').on('click', function (e) {
         e.preventDefault();
 
         var imgUrl = $(this).attr('href');
@@ -30,7 +30,7 @@ $(document).on('ready', function() {
               setTimeout(function() {
                 window.location.reload();
               }, 100);
-            }
+            },
         };
 
         $.ajax(delOpts);
@@ -38,47 +38,54 @@ $(document).on('ready', function() {
 });
 
 /* Size Main Nav, Marquees and grids to correct window size */
-$(document).on('ready', function() {
+$(document).on('ready', function () {
     responsiveLayout();
     Marquee3k.refreshAll();
 });
 
-$(window).on('resize', function() {
+$(window).on('resize', function () {
     responsiveLayout();
     Marquee3k.refreshAll();
 });
 
-function responsiveLayout() {
+function responsiveLayout () {
     var w = $(document).width();
     var gridW = 330;
-   
+
+    // screen-xl size marquees to width above 1320
+    if (w >= 1320) {
+      $('#addy').css('max-width', (w - 990 + 'px'));
+      $('#hours').css('max-width', (w - 990 + 'px'));
+      $('#testimonials').css('max-width', (w - 990 + 'px'));
+      $('#testimonials figure').css('max-width', (w - 990 + 'px'));
+    }
     // screen-lg get remaining screen width above 990 and size marquees/nav to it
-    if ( w >= 1160 && w < 1320 ) {
-      $('#addy').css('max-width', ((w/330 - 3) * 330) );
-      $('#hours').css('max-width', ((w/330 - 3) * 330) );
-      $('#testimonials').css('max-width', ((w/330 - 3) * 330) );
-      $('#testimonials figure').css('max-width', ((w/330 - 3) * 330) );
+    if (w >= 1160 && w < 1320) {
+      $('#addy').css('max-width', ((w / 330 - 3) * 330));
+      $('#hours').css('max-width', ((w / 330 - 3) * 330));
+      $('#testimonials').css('max-width', ((w / 330 - 3) * 330));
+      $('#testimonials figure').css('max-width', ((w / 330 - 3) * 330));
 
       $('#yellps .spacer').show();
       $('#yellps .yellp-img').css('margin-left', '0');
 
-      $('.yellp-arrow').text(' to the →');
+      $('.yellp-arrow').text(' to the right →');
     }
     // screen-md get remaining screen width above 660 and size marquees/nav to it
-    if ( w >= 787 && w <= 1159 ) {
-      $('#addy').css('max-width', ((w/330 - 2) * 330) );
-      $('#hours').css('max-width', ((w/330 - 2) * 330) );
-      $('#testimonials').css('max-width', ((w/330 - 2) * 330) );
-      $('#testimonials figure').css('max-width', ((w/330 - 2) * 330) );
+    if (w >= 787 && w <= 1159) {
+      $('#addy').css('max-width', ((w / 330 - 2) * 330));
+      $('#hours').css('max-width', ((w / 330 - 2) * 330));
+      $('#testimonials').css('max-width', ((w / 330 - 2) * 330));
+      $('#testimonials figure').css('max-width', ((w / 330 - 2) * 330));
 
-      $('.yellp-arrow').text(' to the →');
+      $('.yellp-arrow').text(' to the right →');
 
       $('#yellps .spacer').filter(':odd').hide();
       $('#yellps .yellp-img').filter(':even').css('margin-left', '0');
       $('#yellps .yellp-img').filter(':odd').css('margin-left', '330px');
     }
     // screen-sm
-    if ( w <= 786 ) {
+    if (w <= 786) {
       $('#mainNav').css('max-width', '100%');
       $('#addy').css('max-width', '100%');
       $('#hours').css('max-width', '100%');
@@ -88,15 +95,15 @@ function responsiveLayout() {
       $('#yellps .yellp-img').filter(':even').css('margin-left', '0');
       $('.yellp-arrow').text(' below ↓');
     }
-    if ( w >= 660 && w <= 785 ) {
+    if (w >= 660 && w <= 785) {
       $('#yellps .yellp-img').filter(':odd').css('margin-left', '0');
       $('#yellps .yellp-img').filter(':even').css('margin-left', '330px');
     }
-    if ( w <= 660 ) {
+    if (w <= 660) {
       $('#yellps .yellp-img').filter(':even').css('margin-left', '0');
     }
     // screen-xs
-    if ( w <= 495 ) {
+    if (w <= 495) {
       // reset display styles so css can work
       $('#yellps .yellp-img').filter(':even').css('margin-left', '0');
       $('#yellps .spacer').css('display', '');
@@ -106,7 +113,7 @@ function responsiveLayout() {
 /* Drawing Canvas Yellp App */
 var canvas,
     canvasWidth = 306,
-    canvasHeight = 306; //leave room for canvas border
+    canvasHeight = 306; // leave room for canvas border
 
 var canvasDiv = document.getElementById('canvasDiv');
 canvas = document.createElement('canvas');
@@ -114,7 +121,7 @@ canvas.setAttribute('width', canvasWidth);
 canvas.setAttribute('height', canvasHeight);
 canvas.setAttribute('id', 'canvas');
 canvasDiv.appendChild(canvas);
-if (typeof G_vmlCanvasManager != 'undefined') {
+if (typeof G_vmlCanvasManager !== 'undefined') {
     canvas = G_vmlCanvasManager.initElement(canvas);
 }
 context = canvas.getContext("2d");
@@ -237,10 +244,10 @@ $('#saveCanvas').on('click', function() {
     }
 
     function handleCanvasBlob(blob) {
-
-        var bf = new File([blob], 'fileName', {type: blob.type}); // fileName is just a placeholder here
+        
         var newImg = new FormData();
-        newImg.append('image_upload', bf, "filename.png");
+        //var bf = new File([blob], 'fileName', {type: blob.type}); 
+        newImg.append('image_upload', blob, 'filename.png'); // fileName is just a placeholder here
 
         var opts = {
             type: 'POST',
@@ -249,8 +256,8 @@ $('#saveCanvas').on('click', function() {
             cache: false,
             processData: false,
             contentType: false,
-            success: function(data) {
-              
+            //contentType: "multipart/form-data",
+            success: function (data) {
               data.image_upload.name = 'yellp_' + data.image_upload._id;
               data.image_upload.filename = 'yellp_' + data.image_upload._id;
               data.image_upload.url = '/uploads/images/' + data.image_upload.image.filename;
@@ -259,13 +266,12 @@ $('#saveCanvas').on('click', function() {
               
               //Update the image with the information above.
               $.get('/api/imageupload/'+data.image_upload._id+'/update', data.image_upload, function(data) {
-                
                 console.log('Image information updated.');
                 
               })
 
-              //If the metadata update fails:
-              .fail(function(data) {
+              // If the metadata update fails:
+              .fail(function (data) {
                 
                 console.error('The image metadata was not updated. Here is the error message from the server:');
                 console.error('Server status: '+err.status);
@@ -273,12 +279,11 @@ $('#saveCanvas').on('click', function() {
 
                 alert('Failed to connect to the server while trying to update image metadata!');
               });
-
-              setTimeout(function() {
+              setTimeout(function () {
                 window.location.reload();
               }, 100);
 
-            }
+            },
         };
 
         $.ajax(opts);

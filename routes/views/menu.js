@@ -10,7 +10,9 @@ exports = module.exports = function (req, res) {
 	locals.section = 'menu';
 
 	// Load menus
-	view.query('menu', keystone.list('Menu').model.find());
+	view.query('menu', keystone.list('Menu').model.find({
+        state: 'published'
+    }));
 
 	// Render the view
 	view.render('menu');

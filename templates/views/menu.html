@@ -3,37 +3,102 @@
 {% block content %}
     <div id="menu" class="container">
     	<div class="menu-head-1 spacer col-md-2"></div>
-		<h1 class="page-title col-md-2">Cocktails</h1>
+		<h1 class="page-title col-md-2">Drinks</h1>
 		<div class="menu-head-2 spacer col-md-2"></div>
-        {% if not menu %}
-        <h2>We ran out…</h2> 
-        {% else %}
-        <dl class="cocktails">
-            {% for menu in menu %}
-            {% if menu %}
-            <div class="spacer col-md-2 col-sm-6">
-	        </div>
-            <div class="cocktail col-md-2 col-sm-6">
-                <div class="cocktail-header">
-                    <dt class="cocktail-title">
-                        {{ menu.title }}
-                    </dt>
-                    <dd class="cocktail-price">${{ menu.price }}</dd>
-                </div>
-                <dd class="cocktail-desc">
-                    {{ menu.cocktail.ingredients | striptags(true) | safe }}
-                </dd>
-                <dd class="cocktail-quote">
-                    &ldquo;{{ menu.cocktail.quote | striptags(true) | safe }}&rdquo;
-                </dd>
+        <div class="container drinks-wrapper">
+            {% if not menu %}<!--print menu//-->
+            <div class="spacer col-md-2"></div>
+            <div class="col-md-2">
+                <h2>We ran out…</h2>
+                <p>Come back when we have drinks again : ).</p>
             </div>
-            <div class="spacer col-md-2 col-sm-6">
-	        </div>
-	        <div class="row-spacer col-sm-6">
-	        </div>
-            {% endif %}
-            {% endfor %}
-        </dl>
-        {% endif %}
+            <div class="spacer col-md-2"></div>
+            {% else %}
+            <div class="drinks cocktail col-md-2 col-sm-6">
+                <h2 class="menu-header">Cocktails</h2>
+                {% for menu in menu %}
+                    {% if menu.cocktail.filter === 'Cocktail' %}
+                        <dl class="drink">
+                            <div class="drink-header">
+                                <dt class="drink-title">
+                                    {{ menu.title }}
+                                </dt>
+                                <dd class="drink-price">${{ menu.price }}</dd>
+                            </div>
+                            <dd class="drink-type">
+                                {{ menu.cocktail.filter | striptags(true) | capitalize }}
+                            </dd>
+                            <dd class="drink-desc">
+                                {{ menu.cocktail.ingredients | striptags(true) | safe }}
+                            </dd>
+                            {% if menu.cocktail.quote %}
+                            <dd class="drink-quote">
+                                &ldquo;{{ menu.cocktail.quote | striptags(true) | safe }}&rdquo;
+                            </dd>
+                            {% else %}
+                            <div class="no-drink-quote"></div>
+                            {% endif %}
+                        </dl>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="drinks beer col-md-2 col-sm-6">
+                <h2 class="menu-header">Beer</h2>
+                {% for menu in menu %}
+                    {% if menu.cocktail.filter === 'Beer' %}
+                        <dl class="drink">
+                            <div class="drink-header">
+                                <dt class="drink-title">
+                                    {{ menu.title }}
+                                </dt>
+                                <dd class="drink-price">${{ menu.price }}</dd>
+                            </div>
+                            <dd class="drink-type">
+                                {{ menu.cocktail.filter | striptags(true) | capitalize }}
+                            </dd>
+                            <dd class="drink-desc">
+                                {{ menu.cocktail.ingredients | striptags(true) | safe }}
+                            </dd>
+                            {% if menu.cocktail.quote %}
+                            <dd class="drink-quote">
+                                &ldquo;{{ menu.cocktail.quote | striptags(true) | safe }}&rdquo;
+                            </dd>
+                            {% else %}
+                            <div class="no-drink-quote"></div>
+                            {% endif %}
+                        </dl>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="drinks wine col-md-2 col-sm-6">
+                <h2 class="menu-header">Wine</h2>
+                {% for menu in menu %}
+                    {% if menu.cocktail.filter === 'Wine' %}
+                        <dl class="drink">
+                            <div class="drink-header">
+                                <dt class="drink-title">
+                                    {{ menu.title }}
+                                </dt>
+                                <dd class="drink-price">${{ menu.price }}</dd>
+                            </div>
+                            <dd class="drink-type">
+                                {{ menu.cocktail.filter | striptags(true) | capitalize }}
+                            </dd>
+                            <dd class="drink-desc">
+                                {{ menu.cocktail.ingredients | striptags(true) | safe }}
+                            </dd>
+                            {% if menu.cocktail.quote %}
+                            <dd class="drink-quote">
+                                &ldquo;{{ menu.cocktail.quote | striptags(true) | safe }}&rdquo;
+                            </dd>
+                            {% else %}
+                            <div class="no-drink-quote"></div>
+                            {% endif %}
+                        </dl>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %} <!--//print menu-->
+        </div>
     </div>
 {% endblock %}

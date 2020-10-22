@@ -16,6 +16,7 @@ Menu.add({
 	price: { type: Types.Money },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	cocktail: {
+		filter: { type: Types.Select, options: 'Beer, Wine, Cocktail' },
 		ingredients: { type: Types.Html, wysiwyg: true, height: 150 },
 		quote: { type: Types.Html, wysiwyg: true, height: 150 },
 	},
@@ -25,5 +26,5 @@ Menu.schema.virtual('cocktail.full').get(function () {
 	return this.cocktail.ingredients || this.cocktail.quote;
 });
 
-Menu.defaultColumns = 'title, state|20%, price|20%';
+Menu.defaultColumns = 'title, filter|20%, state|20%, price|20%';
 Menu.register();

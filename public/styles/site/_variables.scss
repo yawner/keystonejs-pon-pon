@@ -24,16 +24,16 @@ $container-md: 990px;
 $container-lg: 990px;
 
 // Other Stuff
-$font-size-base: 21px;
-$headings-font-weight: 600;
-$text-color: #313030;
+$font-size-base: 16px;
+$headings-font-weight: normal;
+$text-color: #121111;
 $link-hover-color: $cyan;
 
 $border-radius-base: .5px;
 $border-radius-large: .75px;
 $border-radius-small: .25px;
 
-$nav-link-padding: 10px 15px 7.5px;
+$nav-link-padding: 15px 15px 7.5px;
 $nav-link-hover-bg: $yellow;
 
 $btn-default-border: #272727;
@@ -46,7 +46,7 @@ $list-group-border: #111;
 $list-group-hover-bg: $cyan;
 $list-group-link-color: #111;
 
-$modal-backdrop-bg: $cyan;
+$modal-backdrop-bg: #ddd;
 $modal-content-bg: $yellow;
 $modal-content-border-color: $magenta;
 $modal-md: 660px;

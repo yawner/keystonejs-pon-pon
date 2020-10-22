@@ -1,37 +1,39 @@
-@import "site/variables";
-
-// Bootstrap
-// =========
-// Bootstrap can be removed entirely by deleting this line.
-
-@import "bootstrap/bootstrap";
-
 // Site Styles
 // ===========
-// Add your own site style includes here
+// Table of Contents
+// 1. Imports
+// 2. Site-wide elements
+// 3. Bootstrap overrides
+// 4. Marquee3k
+// 5. Header
+// 6. Body
+// 7. Yellp Styles (home pg and yellp archive pg)
+// 8. Blog
+// 9. Drink Menu
+// 10. Footer
 
+// 1. Imports
+@import "site/variables";
+@import "bootstrap/bootstrap";
 @import "site/fonts";
 @import "site/mixins";
 @import "site/layout";
 @import "site/mobile";
 
+
+// 2. Site-wide elements
 body {
-    background: url('/images/pon-pattern.png');
-    font-family: 'Sporting Grotesque';
-    font-smoothing: antialiased;
-    -webkit-font-smoothing: antialiased;
-	-moz-font-smoothing: antialiased;
-	-o-font-smoothing: antialiased;
-    text-rendering: geometricPrecision;
+    background: #ddd url('/images/pon-pattern.png');
+    font-family: 'Sporting Grotesque',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
 }
 
 h1, .h1 {
-	letter-spacing: -.0825em;
+	letter-spacing: -.0125em;
 }
 
 h2, .h2, h3, .h3 {
 	margin: 25px 0 22.5px;
-	letter-spacing: -.0775em;
+	letter-spacing: -.0125em;
 }
 
 sub, sup {
@@ -40,8 +42,9 @@ sub, sup {
 
 cite {
 	font-family: 'ElektrixLight';
-	font-size: 1.25em;
+	font-size: 1.425em;
 	font-weight: normal;
+	letter-spacing: .0125em;
 }
 
 a {
@@ -50,7 +53,7 @@ a {
 }
 
 
-// Bootstrap overrides
+// 3. Bootstrap overrides
 .container {
 	min-height: 110px;
 }
@@ -126,12 +129,12 @@ a {
 	}
 }
 
-// Marquee3k
+// 4. Marquee3k
 .marquee3k {
 	overflow: hidden;
 }
 
-// Header
+// 5. Header
 #header .navbar {
 	padding: 0;
 }
@@ -173,36 +176,80 @@ a {
 	}
 }
 
-// Body
+// 6. Body
 #body .container {
 	margin: 0;
 	padding-left: 0;
 	padding-right: 0;
 }
+
+#body {
+	//stretch text
+	h1, .h1, h2, .h2, h3, .h3, p {
+		transform-origin: 0% 0%;
+		transform: scaleX(0.666);
+		width: 133.3333%;
+	}
+	//override stretch text
+	.page-title {
+		transform-origin: 0% 0%;
+		transform: scaleX(1);
+		width: 100%;
+		text-align: center;
+	}
+	.latest-yellps, .more-yellps, .yellps-archive {
+		h1, .h1, h2, .h2, h3, .h3, p {
+			font-size: 3em;
+			transform-origin: 0% 0%;
+			transform: scaleX(1);
+			width: 100%;
+		}
+	}
+}
+
 .page-title {
 	color: #111;
 }
+
 .spacer {
 	height: 330px;
 	width: 330px;
 	padding-left: 0;
 	padding-right: 0;
 }
+
+.filler {
+	height: 110px;
+}
+
 .row-spacer {
 	height: 1px;
 	margin-top: -1px;
 }
 
-.canvas-header h2 {
-	margin-bottom: 0;
+
+// 7.1 Yellp Styles (.1 home pg and .2yellp archive pg)
+
+.canvas-header {
+	background-color: #fff;
+	height: 330px;
+	padding: 0 24px 0;
+	h2 { 
+		font-weight: bold;
+		margin: 38.5px 0 36px; 
+	}
+	p { 
+		font-size: 20px;
+		margin-bottom: 36px;
+	}
 }
+
 #canvasDiv {
 	canvas {
 		@include border(12px, $cyan, $yellow);
 	}
 }
 
-// Yellp Styles
 #yellps {
 	.latest-yellps {
 		background-color: #111;
@@ -236,13 +283,13 @@ a {
 	}
 	.more-yellps {
 		@include egg(330px, 330px, #111);
-		color: #fff;
+		color: #eee;
 		text-align: center;
 		h2 { margin-top: 2em; }
 	}
 }
 
-// Yellps archive
+// 7.2 Yellps archive
 .yellps-archive {
 	background-color: #111;
 	min-height: 330px;
@@ -250,9 +297,10 @@ a {
 	&::before {
 		content: '';
 		position: absolute;
-		@include triangle-right(330px, 165px, #fff);
+		@include triangle-right(330px, 165px, #eee);
 	}
 	h2 {
+		color: #111;
 		margin: 2.5em auto 0 auto;
 		padding: 0 .5em;
 		position: absolute;
@@ -265,7 +313,7 @@ a {
 	top: 0;
 }
 
-// Blog
+// 8. Blog
 .post-head-1 {
 	background: url('/images/pon-pon-favicon-lg.png');
 }
@@ -316,7 +364,7 @@ a {
 	}
 }
 
-// Menu
+// 9. Drink Menu
 #menu {
 	padding: 0;
 	.page-title {
@@ -337,11 +385,13 @@ a {
 	}
 }
 
-.cocktail {
-	background-color: $magenta;
-}
+.menu-header {text-align: center;}
+.drinks-wrapper {background-color: #ddd;}
+.cocktail { background-color: $magenta; }
+.beer { background-color: $cyan; }
+.wine { background-color: $yellow; }
 
-.cocktail-header {
+.drink-header {
 	background-color: #fff;
 	border: 3px solid;
 	font-weight: 600;
@@ -351,19 +401,19 @@ a {
 	padding: 17.5px 16.75px 13.75px;
 }
 
-.cocktail-title {
+.drink-title {
 	display: inline-block;
 	letter-spacing: -.0325em;
 	width: 82.5%;
 }
 
-.cocktail-price {
+.drink-price {
 	color: #fff;
 	display: inline-block;
-	float: right;
 	font-family: 'ElektrixLight';
+	font-size: 24px;
 	font-weight: normal;
-	position: absolute;
+	position: sticky;
 	top: 41px;
 	right: 34px;
 	text-align: center;
@@ -381,14 +431,21 @@ a {
 	}
 }
 
-.cocktail-desc {
+.drink-desc {
 	background-color: #fff;
 	border-style: solid;
 	border-width: 0 3px;
 	padding: 17.5px 16.75px 0;
 }
 
-.cocktail-quote {
+.drink-type {
+	background-color: #fff;
+	border: 3px solid;
+	border-top-width: 0;
+	padding: 17.5px 16.75px 18.75px;
+}
+
+.drink-quote {
 	background-color: #fff;
 	border: 3px solid;
 	border-top-width: 0;
@@ -396,27 +453,32 @@ a {
 	font-size: 1.375em;
 	letter-spacing: -.0125em;
 	line-height: 1.2857;
-	margin-bottom: 18px;
 	padding: 17.5px 16.75px 18.75px;
 }
 
-// Footer
+.no-drink-quote {
+	background-color: #fff;
+	border: 3px solid;
+	border-top-width: 0;
+	padding: 0 16.75px 13.25px;
+}
+
+// 10. Footer
 #footer {
 	background-color: #fff;
 	color: #111;
-	font-weight: bold;
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
 	.credits {
+		text-align: center;
 		p {
 			margin: 0;
 			min-height: 110px;
-			padding-top: 32px;
+			padding-top: 42.5px;
 		} & :nth-child(odd):not(a) {
 			background-color: #111;
 			color: #fff;
-			font-weight: normal;
 		}
 	}
 	#addy {
@@ -429,12 +491,10 @@ a {
 		} .adr {
 			background-color: #fff;
 			color: #111;
-			font-weight: bold;
 			min-height: 110px;
 			padding-top: 42.5px;
 		} .hrs {
 			background-color: #111;
-			font-weight: bold;
 			min-height: 110px;
 			padding-top: 42.5px;
 		} .locality, .region, .postal-code, .country-name {
@@ -453,7 +513,6 @@ a {
 		blockquote {
 			border: none;
 			font-size: inherit;
-			font-weight: bold;
 			margin-bottom: 0;
 			min-height: 110px;
 			padding-top: 42.5px;
@@ -462,7 +521,7 @@ a {
 		& :nth-child(even) {
 			background-color: #111;
 			color: #fff;
-			font-weight: normal;
+			letter-spacing: .0125em
 		}
 	}
 }

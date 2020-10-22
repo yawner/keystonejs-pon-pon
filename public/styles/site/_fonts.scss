@@ -33,3 +33,13 @@
   font-weight: 600;
   font-style: bold;
 }
+
+// Elektrix Light
+@font-face {
+  font-family: 'ElektrixLight';
+  src:  url(/fonts/elektrix/ElektrixLight.ttf) format('truetype'),
+        url(/fonts/elektrix/ElektrixLight.woff) format('woff'),
+        url(/fonts/elektrix/ElektrixLight.woff2) format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

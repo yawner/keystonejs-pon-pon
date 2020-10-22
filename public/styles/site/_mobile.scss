@@ -1,3 +1,11 @@
+// screen-xl
+@media screen and (min-width: 1320px) {
+	#addy, #testimonials {
+		max-width: 100%;
+		width: 100%;
+	}
+}
+
 // screen-lg
 @media screen and (min-width: 1160px) {
 	#mainNav {
@@ -35,9 +43,7 @@
 		position: fixed;
 		right: 0;
 		top: 0;
-		.org, .adr, .hrs {
-			max-width: 330px;
-		}
+		max-width: 330px;
 	}
 	#testimonials {
 		border-bottom: 110px solid #111;
