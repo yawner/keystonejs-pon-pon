@@ -29,7 +29,7 @@
                                 {{ menu.cocktail.filter | striptags(true) | capitalize }}
                             </dd>
                             <dd class="drink-desc">
-                                {{ menu.cocktail.ingredients | striptags(true) | escape | nl2br }}
+                                {{ menu.cocktail.ingredients | nl2br | safe }}
                             </dd>
                             {% if menu.cocktail.quote %}
                             <dd class="drink-quote">
