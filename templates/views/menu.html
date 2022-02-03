@@ -29,7 +29,7 @@
                                 {{ menu.cocktail.filter | striptags(true) | capitalize }}
                             </dd>
                             <dd class="drink-desc">
-                                {{ menu.cocktail.ingredients | nl2br | safe }}
+                                {{ menu.cocktail.ingredients | safe }}
                             </dd>
                             {% if menu.cocktail.quote %}
                             <dd class="drink-quote">
@@ -57,7 +57,7 @@
                                 {{ menu.cocktail.filter | striptags(true) | capitalize }}
                             </dd>
                             <dd class="drink-desc">
-                                {{ menu.cocktail.ingredients | striptags(true) | safe }}
+                                {{ menu.cocktail.ingredients | safe }}
                             </dd>
                             {% if menu.cocktail.quote %}
                             <dd class="drink-quote">
@@ -85,7 +85,7 @@
                                 {{ menu.cocktail.filter | striptags(true) | capitalize }}
                             </dd>
                             <dd class="drink-desc">
-                                {{ menu.cocktail.ingredients | striptags(true) | safe }}
+                                {{ menu.cocktail.ingredients | safe }}
                             </dd>
                             {% if menu.cocktail.quote %}
                             <dd class="drink-quote">
