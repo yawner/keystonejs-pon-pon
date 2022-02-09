@@ -244,11 +244,17 @@ a {
 	}
 }
 
-#canvasDiv {
+@media screen and (min-width: 1160px) {
+	.canvas-header {
+		margin-right: 330px;
+	}
+}
+
+/*#canvasDiv {
 	canvas {
 		@include border(12px, $cyan, $yellow);
 	}
-}
+}*/
 
 #yellps, .placeholder {
 	.latest-yellps {

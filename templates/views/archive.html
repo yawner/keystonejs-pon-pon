@@ -4,16 +4,16 @@
 <div class="container canvas-wrapper">
     <div id="yellps" class="archive">
         <div class="yellps-archive col-md-2 col-sm-3 col-xs-6">
-          <h2>All the Yellps:</h2>
+          <h2>All the Pics:</h2>
         </div>
         <div class="spacer col-md-2 col-sm-3 col-xs-6">
         </div>
         {% if not archive %}
-          <h2 class="text-center">No one Yellped at us!</h2>
+          <h2 class="text-center">No pics!</h2>
         {% else %}
         {% for images in archive %}
           <div class="yellp-img col-md-2 col-sm-3 col-sm-6">
-            <img src="/uploads/images/{{images.image.filename}}" />
+            <img src="/uploads/images/pon-pon-bar-interior-square-web.jpg" />
             {% if user %}
               {% if user.canAccessKeystone and user.isAdmin %}
               <a class="yellp-delete btn btn-default" href="/api/imageupload/{{ images._id }}/remove">Delete</a>
