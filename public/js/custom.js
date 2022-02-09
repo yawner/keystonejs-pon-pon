@@ -78,7 +78,7 @@ function responsiveLayout () {
       $('#testimonials').css('max-width', ((w / 330 - 2) * 330));
       $('#testimonials figure').css('max-width', ((w / 330 - 2) * 330));
 
-      $('.yellp-arrow').text(' to the right →');
+      $('.yellp-arrow').text(' →');
 
       $('#yellps .spacer').filter(':odd').hide();
       $('#yellps .yellp-img').filter(':even').css('margin-left', '0');
@@ -93,7 +93,7 @@ function responsiveLayout () {
       $('#testimonials figure').css('max-width', '100%');
 
       $('#yellps .yellp-img').filter(':even').css('margin-left', '0');
-      $('.yellp-arrow').text(' below ↓');
+      $('.yellp-arrow').text(' ↓');
     }
     if (w >= 660 && w <= 785) {
       $('#yellps .yellp-img').filter(':odd').css('margin-left', '0');
