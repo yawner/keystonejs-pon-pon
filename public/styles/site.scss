@@ -244,7 +244,7 @@ a {
 	}
 }
 
-@media screen and (min-width: 1160px) {
+@media screen and (min-width: 787px) {
 	.canvas-header {
 		margin-right: 330px;
 	}
@@ -392,6 +392,12 @@ a {
 }
 
 .menu-header {text-align: center;}
+@media screen and (max-width: 660px) {
+	.menu-header {
+		margin-top: 0;
+		padding-top: 25px;
+	}
+}
 .drinks-wrapper {background-color: #ddd;}
 .cocktail { background-color: $magenta; }
 .beer { background-color: $cyan; }
