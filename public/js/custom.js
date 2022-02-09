@@ -69,7 +69,7 @@ function responsiveLayout () {
       $('#yellps .spacer').show();
       $('#yellps .yellp-img').css('margin-left', '0');
 
-      $('.yellp-arrow').text(' to the right →');
+      $('.yellp-arrow').text(' →');
     }
     // screen-md get remaining screen width above 660 and size marquees/nav to it
     if (w >= 787 && w <= 1159) {
